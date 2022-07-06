@@ -44,7 +44,7 @@ class DeckOfCards:
 
         return return_list
 
-    # Remove a card from the deck
+    # Remove a card from the deck by suit and rank_name
     # If multi deck, it will remove all of the cards with the suit and rank
     def remove_card(self, rank_name, suit):
         for y, c in enumerate(self.deck):
@@ -124,15 +124,3 @@ class DeckOfCards:
             self.deck.append(self.Card('spades', 13, 'black', 'king'))
             self.deck.append(self.Card('spades', r, 'black', 'ace'))
 
-
-d = DeckOfCards(jokers=True, decks=2, )
-
-print(len(d.deck))
-
-d.remove_card('ace', 'clubs')
-for i in range(len(d.deck)):
-    card = d.hit_single()
-    print(f'{card.rank} of {card.suit}')
-
-
-print(len(d.deck))
