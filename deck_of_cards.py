@@ -1,12 +1,14 @@
 import random
 from PIL import Image
 
+
 # create a deck of cards.
 # multi-decks can be used supply by passing the constructor a number of decks
 class DeckOfCards:
-    def __init__(self, decks=1, jokers=False):
+    def __init__(self, decks=1, jokers=False, ace_high=True):
         self.deck = []
         self.include_jokers = jokers
+        self.ace_high = ace_high
         self.new_deck(decks)
 
     class Card:
@@ -17,6 +19,8 @@ class DeckOfCards:
             self.color = color
             if suit == 'joker':
                 self.image = Image.open(f'deck/{self.color}_joker.png')
+            elif rank == 1:
+                self.image = Image.open(f'deck/ace_of_{self.suit}.png')
             elif rank < 11:
                 self.image = Image.open(f'deck/{self.rank}_of_{self.suit}.png')
             else:
@@ -57,7 +61,8 @@ class DeckOfCards:
             self.deck.append(self.Card('hearts', 11, 'red', 'jack'))
             self.deck.append(self.Card('hearts', 12, 'red', 'queen'))
             self.deck.append(self.Card('hearts', 13, 'red', 'king'))
-            self.deck.append(self.Card('hearts', 14, 'red', 'ace'))
+            r = 14 if self.ace_high else 1
+            self.deck.append(self.Card('hearts', r, 'red', 'ace'))
 
             # diamonds
             self.deck.append(self.Card('diamonds', 2, 'red', 'two'))
@@ -72,7 +77,8 @@ class DeckOfCards:
             self.deck.append(self.Card('diamonds', 11, 'red', 'jack'))
             self.deck.append(self.Card('diamonds', 12, 'red', 'queen'))
             self.deck.append(self.Card('diamonds', 13, 'red', 'king'))
-            self.deck.append(self.Card('diamonds', 14, 'red', 'ace'))
+            r = 14 if self.ace_high else 1
+            self.deck.append(self.Card('diamonds', r, 'red', 'ace'))
 
             # Clubs
             self.deck.append(self.Card('clubs', 2, 'black', 'two'))
@@ -87,7 +93,8 @@ class DeckOfCards:
             self.deck.append(self.Card('clubs', 11, 'black', 'jack'))
             self.deck.append(self.Card('clubs', 12, 'black', 'queen'))
             self.deck.append(self.Card('clubs', 13, 'black', 'king'))
-            self.deck.append(self.Card('clubs', 14, 'black', 'ace'))
+            r = 14 if self.ace_high else 1
+            self.deck.append(self.Card('clubs', r, 'black', 'ace'))
 
             # Spades
             self.deck.append(self.Card('spades', 2, 'black', 'two'))
@@ -102,10 +109,11 @@ class DeckOfCards:
             self.deck.append(self.Card('spades', 11, 'black', 'jack'))
             self.deck.append(self.Card('spades', 12, 'black', 'queen'))
             self.deck.append(self.Card('spades', 13, 'black', 'king'))
-            self.deck.append(self.Card('spades', 14, 'black', 'ace'))
+            r = 14 if self.ace_high else 1
+            self.deck.append(self.Card('spades', r, 'black', 'ace'))
 
 
-d = DeckOfCards(jokers=True, decks=1)
+d = DeckOfCards(jokers=True, decks=1, ace_high=False)
 
 print(len(d.deck))
 
