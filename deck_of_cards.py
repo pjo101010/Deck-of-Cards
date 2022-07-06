@@ -28,7 +28,7 @@ class DeckOfCards:
     def hit_single(self):
         return self.deck.pop()
 
-    def hit_multi(self, number):
+    def hit_multi(self, number=2):
         return_list = []
         for i in range(number):
             return_list.append(self.hit_single())
