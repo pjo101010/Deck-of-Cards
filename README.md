@@ -7,4 +7,4 @@ This is simply a deck of cards with images and some functionality.
   - Jokers (default=False)
   - Shuffle
   - Hit signle card. Returns a class card
-  - Hit multiple cards. Returns a list of cards
+  - Hit multiple cards (default=2). Returns a list of cards
