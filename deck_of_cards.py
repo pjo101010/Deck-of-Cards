@@ -11,12 +11,14 @@ class DeckOfCards:
         self.ace_high = ace_high
         self.new_deck(decks)
 
+    # Card class.
     class Card:
         def __init__(self, suit, rank, color, rank_name):
             self.suit = suit
             self.rank = rank
             self.rank_name = rank_name
             self.color = color
+            # Logic to get correct card image
             if suit == 'joker':
                 self.image = Image.open(f'deck/{self.color}_joker.png')
             elif rank == 1:
@@ -26,12 +28,15 @@ class DeckOfCards:
             else:
                 self.image = Image.open(f'deck/{self.rank_name}_of_{self.suit}.png')
 
+    # Shuffle the deck of cards
     def shuffle(self):
         random.shuffle(self.deck)
 
+    # Get a single card of the top of the deck.
     def hit_single(self):
         return self.deck.pop()
 
+    # Get a specified number of cards
     def hit_multi(self, number=2):
         return_list = []
         for i in range(number):
@@ -39,6 +44,14 @@ class DeckOfCards:
 
         return return_list
 
+    # Remove a card from the deck
+    # If multi deck, it will remove all of the cards with the suit and rank
+    def remove_card(self, rank_name, suit):
+        for y, c in enumerate(self.deck):
+            if c.rank_name == rank_name and c.suit == suit:
+                del self.deck[y]
+
+    # Get a new deck. Clears the old and repopulates the deck
     def new_deck(self, decks=1):
         self.deck.clear()
         for i in range(decks):
@@ -47,6 +60,9 @@ class DeckOfCards:
             if self.include_jokers:
                 self.deck.append(self.Card('joker', 0, 'red', 'joker'))
                 self.deck.append(self.Card('joker', 0, 'black', 'joker'))
+
+            # Check for ace high and set the rank for ace
+            r = 14 if self.ace_high else 1
 
             # Hearts
             self.deck.append(self.Card('hearts', 2, 'red', 'two'))
@@ -61,7 +77,6 @@ class DeckOfCards:
             self.deck.append(self.Card('hearts', 11, 'red', 'jack'))
             self.deck.append(self.Card('hearts', 12, 'red', 'queen'))
             self.deck.append(self.Card('hearts', 13, 'red', 'king'))
-            r = 14 if self.ace_high else 1
             self.deck.append(self.Card('hearts', r, 'red', 'ace'))
 
             # diamonds
@@ -77,7 +92,6 @@ class DeckOfCards:
             self.deck.append(self.Card('diamonds', 11, 'red', 'jack'))
             self.deck.append(self.Card('diamonds', 12, 'red', 'queen'))
             self.deck.append(self.Card('diamonds', 13, 'red', 'king'))
-            r = 14 if self.ace_high else 1
             self.deck.append(self.Card('diamonds', r, 'red', 'ace'))
 
             # Clubs
@@ -93,7 +107,6 @@ class DeckOfCards:
             self.deck.append(self.Card('clubs', 11, 'black', 'jack'))
             self.deck.append(self.Card('clubs', 12, 'black', 'queen'))
             self.deck.append(self.Card('clubs', 13, 'black', 'king'))
-            r = 14 if self.ace_high else 1
             self.deck.append(self.Card('clubs', r, 'black', 'ace'))
 
             # Spades
@@ -109,15 +122,15 @@ class DeckOfCards:
             self.deck.append(self.Card('spades', 11, 'black', 'jack'))
             self.deck.append(self.Card('spades', 12, 'black', 'queen'))
             self.deck.append(self.Card('spades', 13, 'black', 'king'))
-            r = 14 if self.ace_high else 1
             self.deck.append(self.Card('spades', r, 'black', 'ace'))
 
 
-d = DeckOfCards(jokers=True, decks=1, ace_high=False)
+d = DeckOfCards(jokers=True, decks=2, )
 
 print(len(d.deck))
 
-for i in range(54):
+d.remove_card('ace', 'clubs')
+for i in range(len(d.deck)):
     card = d.hit_single()
     print(f'{card.rank} of {card.suit}')
 
