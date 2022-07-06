@@ -10,8 +10,8 @@ This is simply a deck of cards with images and some functionality.
   - Hit multiple cards (default=2). Returns a list of cards
   
  card class members.
-  -suit: a string with either 'hearts' 'diamonds' 'clubs' 'spades'
-  -rank: 0 = joker, 2-10, 11-14 for jack through ace, 1 = ace if not ace high
-  -rank name: numbers spelled out, 'jack', 'queen' 'king' ace'
-  -color: 'red' 'black'
-  -image
+  - suit: a string with either 'hearts' 'diamonds' 'clubs' 'spades'
+  - rank: 0 = joker, 2-10, 11-14 for jack through ace, 1 = ace if not ace high
+  - rank name: numbers spelled out, 'jack', 'queen' 'king' ace'
+  - color: 'red' 'black'
+  - image
