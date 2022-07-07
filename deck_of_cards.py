@@ -10,6 +10,7 @@ class DeckOfCards:
         self.include_jokers = jokers
         self.ace_high = ace_high
         self.new_deck(decks)
+        self.card_back = Image.open("deck/card_back.PNG")
 
     # Card class.
     class Card:
