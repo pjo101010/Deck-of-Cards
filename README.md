@@ -11,6 +11,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 
+# About
 This is simply a deck of cards with images and some functionality.
   - Create a deck
   - New deck 
@@ -26,3 +27,6 @@ This is simply a deck of cards with images and some functionality.
   - rank name: 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king', 'ace', 'joker'
   - color: 'red' 'black'
   - image: Display image for card
+
+# Install
+pip install Ultimate-Card-Deck
