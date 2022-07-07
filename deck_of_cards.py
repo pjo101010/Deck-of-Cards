@@ -22,9 +22,9 @@ class DeckOfCards:
             # Logic to get correct card image
             if suit == 'joker':
                 self.image = Image.open(f'deck/{self.color}_joker.png')
-            elif rank == 1:
+            elif rank == 1:  # logic to get card image if not ace high
                 self.image = Image.open(f'deck/ace_of_{self.suit}.png')
-            elif rank < 11:
+            elif rank < 11:  # Face cards
                 self.image = Image.open(f'deck/{self.rank}_of_{self.suit}.png')
             else:
                 self.image = Image.open(f'deck/{self.rank_name}_of_{self.suit}.png')
@@ -124,4 +124,3 @@ class DeckOfCards:
             self.deck.append(self.Card('spades', 12, 'black', 'queen'))
             self.deck.append(self.Card('spades', 13, 'black', 'king'))
             self.deck.append(self.Card('spades', r, 'black', 'ace'))
-
