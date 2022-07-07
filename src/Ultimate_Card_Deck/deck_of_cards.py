@@ -1,5 +1,9 @@
 import random
+import os
 from PIL import Image
+
+
+dirname = os.path.dirname(__file__)
 
 
 # create a deck of cards.
@@ -10,7 +14,7 @@ class DeckOfCards:
         self.include_jokers = jokers
         self.ace_high = ace_high
         self.new_deck(decks)
-        self.card_back = Image.open("deck/card_back.PNG")
+        self.card_back = Image.open(os.path.join(dirname, "deck/card_back.PNG"))
 
     # Card class.
     class Card:
@@ -20,14 +24,17 @@ class DeckOfCards:
             self.rank_name = rank_name
             self.color = color
             # Logic to get correct card image
+            filename = ''
             if suit == 'joker':
-                self.image = Image.open(f'deck/{self.color}_joker.png')
+                filename = os.path.join(dirname, 'deck/{self.color}_joker.png')
             elif rank == 1:  # logic to get card image if not ace high
-                self.image = Image.open(f'deck/ace_of_{self.suit}.png')
+                filename = os.path.join(dirname, f'deck/ace_of_{self.suit}.png')
             elif rank < 11:  # Face cards
-                self.image = Image.open(f'deck/{self.rank}_of_{self.suit}.png')
+                filename = os.path.join(dirname, f'deck/{self.rank}_of_{self.suit}.png')
             else:
-                self.image = Image.open(f'deck/{self.rank_name}_of_{self.suit}.png')
+                filename = os.path.join(dirname, f'deck/{self.rank_name}_of_{self.suit}.png')
+
+            self.image = Image.open(filename)
 
     # Shuffle the deck of cards
     def shuffle(self):
@@ -124,3 +131,4 @@ class DeckOfCards:
             self.deck.append(self.Card('spades', 12, 'black', 'queen'))
             self.deck.append(self.Card('spades', 13, 'black', 'king'))
             self.deck.append(self.Card('spades', r, 'black', 'ace'))
+

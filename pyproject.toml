@@ -1,6 +1,6 @@
 [project]
-name = "Deck_of_Cards"
-version = "0.0.1"
+name = "Ultimate_Card_Deck"
+version = "0.0.5"
 authors = [
   { name="Patrick", email="pjo101689@gmail.com" },
 ]
